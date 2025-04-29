@@ -1,0 +1,21 @@
+Stage 1
+- goal: basic arbitrage
+- protocols: zomma, deribit
+
+Stage 2
+- goal: advanced arbitrage
+- monitor the position values, and determine if an early close will increase yield
+
+Arbitrage calculation example
+Option: BTC-96000-090MAY25-C
+Zomma: Short - 2370$ (2420 - 50 fee)
+Deribit: Long - 2354$ (2326 + 28 fee)
+Spot: 950000$
+
+Profit = sell_price - buy_price = 2370 - 2354 = 16$
+Collateral (protocol specific) = 0.1 * desired_health_factor * (size * spot_price + sell_price_excl_fees) = 0.1 * 1.2 * (1 * 95000 + 2420) = 11690$
+ROI = Profit / Collateral = 16 / 11690 = 0.00136869 = 0.136869%
+TradeDays = expiry - entry = 09MAY25 0800 UTC - 29APR25 0800 UTC = 10d
+DailyYield = ROI / TradeDays = 0.00136869 / 10 = 0.000136869 = 0.0136869%
+APR (linear) = ROI * (365 / TradeDays) = DailyYield * days_in_year = 0.00136869 * 365 = 0.049957185 =  4.9957185%
+APY (compounded) = (1 + ROI) ^ (days_in_year / TradeDays) - 1 = (1 +0.00136869) ^ (365 / 10) - 1 = 0.05119018 = 5.119018%
